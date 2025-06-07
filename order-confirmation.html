@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Confirmation - Savanah Collections</title>
+  <link rel="stylesheet" href="order-confirmation.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <h1>Savanah Collections</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="confirmation-container">
+    <section class="confirmation-message">
+      <h2>Thank You for Your Purchase!</h2>
+      <p>Your order has been successfully placed.</p>
+      <p>Order Number: <strong id="order-number">#000000</strong></p>
+      <p>A confirmation email has been sent to <strong id="user-email">example@example.com</strong>.</p>
+    </section>
+
+    <section class="order-details">
+      <h3>Order Summary</h3>
+      <ul id="order-items">
+        <!-- Items will be inserted here -->
+      </ul>
+      <p><strong>Total: KSh <span id="order-total">0.00</span></strong></p>
+    </section>
+
+    <section class="next-steps">
+      <a href="products.html" class="btn">Continue Shopping</a>
+      <a href="account.html" class="btn">View Order Details</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Savanah Collections. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="order-confirmation.js"></script>
+</body>
+</html>

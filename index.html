@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Savanah Collections</title>
+  <title>Queen Collections</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -33,7 +33,7 @@
   <section class="hero">
     <img src="https://i.postimg.cc/nc1rdRdT/young-woman-shopping-clothes.jpg" style ="width: 100%; height: auto; padding-top: 0px;" alt="Hero models placeholder">
     <div class="hero-text">Outfit goals, unlocked.</div>
-    <button class="cta-button">Shop New Arrivals</button>
+    <button class="cta-button" onclick="location.href='products.html'">Shop New Arrivals</button>
   </section>
   
   
@@ -88,32 +88,52 @@
 <section class="bestsellers">
   <h2>Our Bestsellers</h2>
   <div class="bestseller-grid">
-    <div class="product-card">
-      <img src="https://i.postimg.cc/VkNzj1rj/19821.jpg" alt="Bestseller 1">
+    <div class="product-card" 
+         data-id="boho-fringe-jacket" 
+         data-name="Boho Fringe Jacket" 
+         data-price="7800.00" 
+         data-image="https://i.postimg.cc/VkNzj1rj/19821.jpg">
+         
+      <img src="https://i.postimg.cc/VkNzj1rj/19821.jpg" alt="Boho Fringe Jacket">
       <div class="product-info">
         <h3>Boho Fringe Jacket</h3>
-        <p>$72.00</p>
+        <p>7800.00</p>
         <button class="add-to-cart">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
-      <img src="https://i.postimg.cc/3RT6FCSP/2150360988.jpg" alt="Bestseller 2">
+
+    <!-- Repeat structure below for additional products -->
+
+    <div class="product-card" 
+         data-id="vintage-lace-top" 
+         data-name="Vintage Lace Top" 
+         data-price="2300.00" 
+         data-image="https://i.postimg.cc/Bn1dVc3P/lacetop.jpg">
+
+      <img src="https://i.postimg.cc/Bn1dVc3P/lacetop.jpg" alt="Vintage Lace Top">
       <div class="product-info">
-        <h3>High-Waist Flare Jeans</h3>
-        <p>$65.00</p>
+        <h3>Vintage Lace Top</h3>
+        <p>4800.00</p>
         <button class="add-to-cart">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
-      <img src="https://i.postimg.cc/T2ZkVcKQ/4499.jpg" alt="Bestseller 3">
+
+    <div class="product-card" 
+         data-id="african-print-skirt" 
+         data-name="African Print Skirt" 
+         data-price="55.00" 
+         data-image="https://i.postimg.cc/sD32rS5P/africanskirt.jpg">
+
+      <img src="https://i.postimg.cc/sD32rS5P/africanskirt.jpg" alt="African Print Skirt">
       <div class="product-info">
-        <h3>Lace Trim Blouse</h3>
-        <p>$38.00</p>
+        <h3>African Print Skirt</h3>
+        <p>$55.00</p>
         <button class="add-to-cart">Add to Cart</button>
       </div>
     </div>
   </div>
 </section>
+
 
 
 <section class="reviews">
@@ -232,8 +252,8 @@
   <div class="overlay" id="mobileMenu">
     <div class="overlay-close" id="menuClose">&times;</div>
     <div class="overlay-nav">
-      <a href="#">Home</a>
-      <a href="#">New Arrivals</a>
+      <a href="/index.html">Home</a>
+      <a href="products.html">New Arrivals</a>
       <a href="#">Tops</a>
       <a href="#">Bottoms</a>
       <a href="#">Accessories</a>
@@ -242,6 +262,54 @@
   </div>
 
   <script src="script.js"></script>
+  
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const productCard = this.closest('.product-card');
+        const productId = productCard.getAttribute('data-id');
+        const productName = productCard.getAttribute('data-name');
+        const productPrice = parseFloat(productCard.getAttribute('data-price'));
+        const productImage = productCard.getAttribute('data-image');
+
+        const product = {
+          id: productId,
+          name: productName,
+          price: productPrice,
+          image: productImage,
+          quantity: 1
+        };
+
+        // Retrieve existing cart from localStorage or initialize empty array
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Check if product already exists in cart
+        const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+        if (existingProductIndex !== -1) {
+          // If product exists, increment quantity
+          cart[existingProductIndex].quantity += 1;
+        } else {
+          // If product doesn't exist, add to cart
+          cart.push(product);
+        }
+
+        // Save updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Redirect to cart page
+        window.location.href = 'cart.html';
+      });
+    });
+  });
+</script>
+
+  
+  
 
 </body>
 </html>
